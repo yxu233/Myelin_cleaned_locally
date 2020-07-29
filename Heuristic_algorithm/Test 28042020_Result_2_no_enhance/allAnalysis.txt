@@ -1,0 +1,60 @@
+Image No. : 1              File name:  
+Num wrapped R cells: 3 
+Num un-wrapped R cells: 38 
+Proportion wrapped R: 0.07 
+
+Num wrapped G cells: 0 
+Num un-wrapped G cells: 0 
+Proportion wrapped G: NaN 
+
+Total num cells: 41 
+Num R fibers in image: 21 
+Num G fibers in image: 0 
+length of wrapping per R fiber: 486.285714length of wrapping per G fiber: NaN 
+
+
+Image No. : 2              File name:  
+Num wrapped R cells: 2 
+Num un-wrapped R cells: 66 
+Proportion wrapped R: 0.03 
+
+Num wrapped G cells: 0 
+Num un-wrapped G cells: 0 
+Proportion wrapped G: NaN 
+
+Total num cells: 68 
+Num R fibers in image: 30 
+Num G fibers in image: 0 
+length of wrapping per R fiber: 418.933333length of wrapping per G fiber: NaN 
+
+
+Image No. : 3              File name:  
+Num wrapped R cells: 3 
+Num un-wrapped R cells: 62 
+Proportion wrapped R: 0.05 
+
+Num wrapped G cells: 0 
+Num un-wrapped G cells: 0 
+Proportion wrapped G: NaN 
+
+Total num cells: 65 
+Num R fibers in image: 49 
+Num G fibers in image: 0 
+length of wrapping per R fiber: 425.734694length of wrapping per G fiber: NaN 
+
+
+Image No. : 4              File name:  
+Num wrapped R cells: 2 
+Num un-wrapped R cells: 78 
+Proportion wrapped R: 0.03 
+
+Num wrapped G cells: 0 
+Num un-wrapped G cells: 0 
+Proportion wrapped G: NaN 
+
+Total num cells: 80 
+Num R fibers in image: 56 
+Num G fibers in image: 0 
+length of wrapping per R fiber: 411.410714length of wrapping per G fiber: NaN 
+
+
