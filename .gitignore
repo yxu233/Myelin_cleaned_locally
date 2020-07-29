@@ -1,5 +1,5 @@
 
 *.csv
 *.txt
-./Heuristic_algorithm/*Result*
+/Heuristic_algorithm/*Result*/
 *.png

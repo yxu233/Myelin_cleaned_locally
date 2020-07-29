@@ -180,8 +180,8 @@ while (moreTrials == 'Y')
     end
     nameTmp = strcat('allAnalysis', erase(name, '*'), '.txt');   % Output file
     
-    fileID = fopen(nameTmp,'w');
-    fid_internodes = fopen(strcat('internodes', saveDirName, '.csv'), 'w') ;
+    %fileID = fopen(nameTmp,'w');
+    %fid_internodes = fopen(strcat('internodes', saveDirName, '.csv'), 'w') ;
     
     cd(cur_dir);
     
@@ -414,7 +414,7 @@ while (moreTrials == 'Y')
         %% Switch the sheaths for Annick's analysis
         greenOrig = MBP_im;
         
-        MBP_im = zeros(size(O4_im));
+        %MBP_im = zeros(size(O4_im));
         
         if combineRG == 1
             MBP_im = imadjust(greenOrig);
@@ -680,25 +680,7 @@ while (moreTrials == 'Y')
         print(filename,'-dpng')
         hold off;
         
-        %% Print to file:
-        %(1) "allAnalysis.txt" is for EACH image
-        
-        %%if file is already open, then no need to open it again
-        fprintf(fileID,'Image No. : %d              File name: %s \n', (fileNum_sav), erase(name, '*'));
-        fprintf(fileID,'Num wrapped R cells: %d \n', wrappedR);
-        fprintf(fileID,'Num un-wrapped R cells: %d \n', unwrappedR);
-        fprintf(fileID,'Proportion wrapped R: %.2f \n\n', wrappedR/(unwrappedR + wrappedR));
-        fprintf(fileID,'Num wrapped G cells: %d \n', wrappedG);
-        fprintf(fileID,'Num un-wrapped G cells: %d \n', unwrappedG);
-        fprintf(fileID,'Proportion wrapped G: %.2f \n\n', wrappedG/(unwrappedG + wrappedG));
-        
-        fprintf(fileID,'Total num cells: %d \n', wrappedR + unwrappedR);
-        fprintf(fileID,'Num R fibers in image: %d \n', numFibersR);
-        fprintf(fileID,'Num G fibers in image: %d \n', numFibersG);
-        
-        fprintf(fileID,'length of wrapping per R fiber: %f', mean2(allLengthFibers));
-        fprintf(fileID,'length of wrapping per G fiber: %f \n\n\n', mean2(allLengthFibersG));
-        
+ 
         sumWrappedR = sumWrappedR + wrappedR;
         sumUnWrappedR = sumUnWrappedR + unwrappedR;
         sumFibersPerPatchR = sumFibersPerPatchR + numFibersR;
@@ -732,40 +714,39 @@ while (moreTrials == 'Y')
         cd(cur_dir);
         
     end
-    fclose(fileID);      %%%close after so it can append, but next time it writes file, it will over-write    %%% in the future maybe just append??? and have hours log
-    
+
     cd(saveDirName);
     %% (2) "Summary.txt" is for summary of ALL the images
     proportionR = sumWrappedR/(sumUnWrappedR + sumWrappedR);
     proportionG = sumWrappedG/(sumUnWrappedG + sumWrappedG);
     
-    nameTmp = strcat('summary', erase(name, '*'), '.txt');
-    fileID = fopen(nameTmp,'w');
-    fprintf(fileID,'Total num images analyzed: %d \n', numfids/5);
-    fprintf(fileID,'Num wrapped R cells: %d \n', sumWrappedR);
-    fprintf(fileID,'Num un-wrapped R cells: %d \n', sumUnWrappedR);
-    fprintf(fileID,'Proportion wrapped R: %.2f \n', proportionR);
-    
-    fprintf(fileID,'Num wrapped G cells: %d \n', sumWrappedG);
-    fprintf(fileID,'Num un-wrapped G cells: %d \n', sumUnWrappedG);
-    fprintf(fileID,'Proportion wrapped G: %.2f \n\n', proportionG);
-    
-    fprintf(fileID,'Proportion Wrapped / O4+ cells: %.2f \n', sumWrappedR/ sumO4);
-    fprintf(fileID,'Proportion O4+ / Total cells: %.2f \n', sumO4 / (sumWrappedR + sumUnWrappedR));
-    fprintf(fileID,'Total num O4+ cells: %d \n', sumO4);
-    fprintf(fileID,'Total num cells: %d \n', sumWrappedR + sumUnWrappedR);
-    
-    fprintf(fileID,'Total num R Fibers: %d \n', sumFibersPerPatchR);
-    fprintf(fileID,'Avg length of wrapping per R fiber: %f \n\n', mean2(allLengthFibers));
-    
-    fprintf(fileID,'Total num G Fibers: %d \n', sumFibersPerPatchG);
-    fprintf(fileID,'Avg length of wrapping per G fiber: %f \n', mean2(allLengthFibersG));
-    
-    fprintf(fileID,'Sensitivity of line segmentation: %.2f \n', sensitivity);
-    
-    fprintf(fileID,'User selected parameters %s -', save_params{:});
-    fclose(fileID);
-    
+%     nameTmp = strcat('summary', erase(name, '*'), '.txt');
+%     fileID = fopen(nameTmp,'w');
+%     fprintf(fileID,'Total num images analyzed: %d \n', numfids/5);
+%     fprintf(fileID,'Num wrapped R cells: %d \n', sumWrappedR);
+%     fprintf(fileID,'Num un-wrapped R cells: %d \n', sumUnWrappedR);
+%     fprintf(fileID,'Proportion wrapped R: %.2f \n', proportionR);
+%     
+%     fprintf(fileID,'Num wrapped G cells: %d \n', sumWrappedG);
+%     fprintf(fileID,'Num un-wrapped G cells: %d \n', sumUnWrappedG);
+%     fprintf(fileID,'Proportion wrapped G: %.2f \n\n', proportionG);
+%     
+%     fprintf(fileID,'Proportion Wrapped / O4+ cells: %.2f \n', sumWrappedR/ sumO4);
+%     fprintf(fileID,'Proportion O4+ / Total cells: %.2f \n', sumO4 / (sumWrappedR + sumUnWrappedR));
+%     fprintf(fileID,'Total num O4+ cells: %d \n', sumO4);
+%     fprintf(fileID,'Total num cells: %d \n', sumWrappedR + sumUnWrappedR);
+%     
+%     fprintf(fileID,'Total num R Fibers: %d \n', sumFibersPerPatchR);
+%     fprintf(fileID,'Avg length of wrapping per R fiber: %f \n\n', mean2(allLengthFibers));
+%     
+%     fprintf(fileID,'Total num G Fibers: %d \n', sumFibersPerPatchG);
+%     fprintf(fileID,'Avg length of wrapping per G fiber: %f \n', mean2(allLengthFibersG));
+%     
+%     fprintf(fileID,'Sensitivity of line segmentation: %.2f \n', sensitivity);
+%     
+%     fprintf(fileID,'User selected parameters %s -', save_params{:});
+%     fclose(fileID);
+%     
     cd(cur_dir);
     
     %% For stats later:
@@ -1005,11 +986,11 @@ saveDirName = split_name{end};
 
 fid1 = fopen(strcat('output_sheaths_', saveDirName, '.csv'), 'w') ;
 fid2 = fopen(strcat('output_lengths_', saveDirName, '.csv'), 'w') ;
-fid3 = fopen(strcat('output_log_', saveDirName, '.csv'), 'w') ;
-fid4 = fopen(strcat('output_LPC_', saveDirName, '.csv'), 'w') ;
-fid5 = fopen(strcat('output_area_per_cell_', saveDirName, '.csv'), 'w');
+%fid3 = fopen(strcat('output_log_', saveDirName, '.csv'), 'w') ;
+%fid4 = fopen(strcat('output_LPC_', saveDirName, '.csv'), 'w') ;
+%fid5 = fopen(strcat('output_area_per_cell_', saveDirName, '.csv'), 'w');
 fid6 = fopen(strcat('output_props_', saveDirName, '.csv'), 'w');
-fid7 = fopen(strcat('output_area_per_cell_non-ensheathed', saveDirName, '.csv'), 'w');
+%fid7 = fopen(strcat('output_area_per_cell_non-ensheathed', saveDirName, '.csv'), 'w');
 fid8 = fopen(strcat('output_names_', saveDirName, '.csv'), 'wt');
 
 
@@ -1052,10 +1033,10 @@ if length(batch_numFiles) < 2
         
         dlmwrite(strcat('output_sheaths_', saveDirName, '.csv'), all_individual_trials_sheaths(1, idx), '-append') ;
         dlmwrite(strcat('output_lengths_', saveDirName, '.csv'), all_individual_trials_lengths(1, idx), '-append') ;
-        dlmwrite(strcat('output_log_', saveDirName, '.csv'), all_individual_trials_log(1, idx), '-append') ;
-        dlmwrite(strcat('output_LPC_', saveDirName,'.csv'), all_individual_trials_LPC(1, idx), '-append') ;
-        dlmwrite(strcat('output_area_per_cell_', saveDirName, '.csv'), all_individual_trials_area_per_cell(1, idx), '-append')
-        dlmwrite(strcat('output_area_per_cell_non_ensheathed', saveDirName, '.csv'), all_individual_trials_area_per_cell_non_ensheathed(1, idx), '-append')
+        %dlmwrite(strcat('output_log_', saveDirName, '.csv'), all_individual_trials_log(1, idx), '-append') ;
+        %dlmwrite(strcat('output_LPC_', saveDirName,'.csv'), all_individual_trials_LPC(1, idx), '-append') ;
+        %dlmwrite(strcat('output_area_per_cell_', saveDirName, '.csv'), all_individual_trials_area_per_cell(1, idx), '-append')
+        %dlmwrite(strcat('output_area_per_cell_non_ensheathed', saveDirName, '.csv'), all_individual_trials_area_per_cell_non_ensheathed(1, idx), '-append')
         dlmwrite(strcat('output_props_', saveDirName, '.csv'), all_individual_trials(idx, :), '-append')
         
         fprintf(fid8, strcat(all_individual_trials_names{idx}, '\n'));
@@ -1099,10 +1080,10 @@ else  % if BATCHED with user input
         
         dlmwrite(strcat('output_sheaths_', saveDirName, '.csv'), all_individual_trials_sheaths(1, total_counter), '-append') ;
         dlmwrite(strcat('output_lengths_', saveDirName, '.csv'), all_individual_trials_lengths(1, total_counter), '-append') ;
-        dlmwrite(strcat('output_log_', saveDirName, '.csv'), all_individual_trials_log(1, total_counter), '-append') ;
-        dlmwrite(strcat('output_LPC_', saveDirName, '.csv'), all_individual_trials_LPC(1, total_counter), '-append') ;
-        dlmwrite(strcat('output_area_per_cell_', saveDirName, '.csv'), all_individual_trials_area_per_cell(1, total_counter), '-append')
-        dlmwrite(strcat('output_area_per_cell_non_ensheathed', saveDirName, '.csv'), all_individual_trials_area_per_cell_non_ensheathed(1, total_counter), '-append')
+        %dlmwrite(strcat('output_log_', saveDirName, '.csv'), all_individual_trials_log(1, total_counter), '-append') ;
+        %dlmwrite(strcat('output_LPC_', saveDirName, '.csv'), all_individual_trials_LPC(1, total_counter), '-append') ;
+        %dlmwrite(strcat('output_area_per_cell_', saveDirName, '.csv'), all_individual_trials_area_per_cell(1, total_counter), '-append')
+        %dlmwrite(strcat('output_area_per_cell_non_ensheathed', saveDirName, '.csv'), all_individual_trials_area_per_cell_non_ensheathed(1, total_counter), '-append')
         dlmwrite(strcat('output_props_', saveDirName, '.csv'), all_individual_trials, '-append')
         
         fprintf(fid8, strcat(all_individual_trials_names{idx}, '\n'))
@@ -1113,19 +1094,19 @@ end
 
 fclose(fid1);
 fclose(fid2);
-fclose(fid3);
-fclose(fid4);
-fclose(fid5);
+%fclose(fid3);
+%fclose(fid4);
+%fclose(fid5);
 fclose(fid6);
-fclose(fid7);
+%fclose(fid7);
 fclose(fid8);
 
 %% Make csv files for data analysis
-name_csv = 'Result_names.csv';
-Row_Names = batch;
-T1 = table(Row_Names);
-
-writetable(T1, name_csv, 'WriteRowNames',true);
-
-dlmwrite(name_csv, ' ', '-append');
+% name_csv = 'Result_names.csv';
+% Row_Names = batch;
+% T1 = table(Row_Names);
+% 
+% writetable(T1, name_csv, 'WriteRowNames',true);
+% 
+% dlmwrite(name_csv, ' ', '-append');
 
